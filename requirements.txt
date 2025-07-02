@@ -1,0 +1,5 @@
+requests
+Pillow
+google-cloud-storage
+python-dotenv
+apify-client==1.11.0

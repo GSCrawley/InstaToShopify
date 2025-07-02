@@ -1,0 +1,1 @@
+# storefront_api.py: Handles customer-facing operations for the custom frontend using the Shopify Storefront API.
