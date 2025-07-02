@@ -1,167 +1,250 @@
-# Instagram to Etsy Print Shop Automation (auto_etsy)
+# Instagram to Shopify Photography Storefront: Current State & Next Steps
 
-## Project Overview
+## Current Status
 
-This project aims to create a fully automated pipeline to transform landscape photography from an Instagram account into a profitable Etsy print shop. It leverages print-on-demand services and incorporates intelligent content-based image discovery and search capabilities.
+✅ **Project Structure**: Well-organized with phase-based directories  
+✅ **Configuration**: Environment variables set up in `.env` and loaded via `config.py`  
+✅ **Instagram Scraping**: Basic implementation using Apify's Instagram scraper  
+✅ **Enhanced Filtering**: Computer vision integration for quality assessment  
+✅ **API Keys**: Configured for Apify, GCS, and Print-on-Demand services  
 
-The core goal is to automate the process from image sourcing on Instagram, through content analysis and print optimization, to listing products on Etsy and managing the shop.
+## Project Direction Change
 
-### MVP: Application for Personal Use (Initial Focus)
+**🚀 NEW DIRECTION**: The project has pivoted from Etsy to **Shopify** to create a premium photography storefront with:
+- **Higher profit margins** (60-80% vs Etsy's 40-50%)
+- **Full brand control** with custom domain and experience
+- **Direct customer relationships** and data ownership
+- **Advanced SEO capabilities** without marketplace limitations
+- **Scalable architecture** with headless commerce approach
 
-This project will initially be developed as an **MVP (Minimum Viable Product)** tailored for the primary user's personal use. While designed as a reusable application for a repeatable process, the immediate focus is on creating a functional tool for a single-user workflow. Future iterations may expand this to a more general, multi-user application.
+## Missing Components
 
-The core workflow for this MVP will be:
+**1. Shopify Integration**: Admin API and Storefront API implementation  
+**2. Premium POD Integration**: WhiteWall or similar gallery-quality print services  
+**3. Custom Storefront**: React/Next.js frontend for photography showcase  
+**4. Advanced Computer Vision**: Enhanced filtering for print-quality assessment  
+**5. SEO Automation**: Automated meta descriptions, titles, and content generation  
+**6. Analytics Dashboard**: Performance tracking and optimization tools  
 
-* **Instagram Image Retrieval:** This is a two-stage process. First, the application will use a scraper (e.g., via Apify) to fetch recent posts from the user's specified Instagram profile(s). Second, for each scraped image, a Computer Vision (CV) model within our application will analyze its visual content. This CV analysis will filter the images based on a descriptive criterion provided by the user (e.g., to find all images visually containing a "sunset" or representing "New York City streets at dusk"), even if the original posts lack hashtags or detailed text descriptions.
-* **Image Optimization:** Programmatically enhance and prepare the retrieved images to ensure they are print-worthy.
-* **Cloud Storage:** Save the optimized images to the user's designated Google Cloud Storage bucket.
-* **Print-on-Demand Integration:** Integrate with Printify to define product templates.
-* **Etsy Listing Automation:** Automatically create and post these product templates as new listings on the user's Etsy shop, based on specified print types.
-* **Notification:** Inform the user once new listings have been successfully posted.
+## Implementation Plan
 
-The application will require the user to provide their credentials for Instagram (for the scraper), Google Cloud Storage, Printify, and Etsy.
+### Phase 1: Architecture & Integration Strategy (Week 1-2)
 
-## Comprehensive Guide
+#### 1.1 Shopify Store Setup & Configuration
+- Create Shopify Partner Account → Development Store
+- Install Headless Channel from Shopify App Store
+- Generate API credentials:
+  - Private access token (Admin API)
+  - Public access token (Storefront API)
+  - Configure scopes: `read_products`, `write_products`, `read_inventory`, `write_inventory`
 
-The detailed plan, technical specifications, and full project scope are documented in the [Comprehensive Guide: Instagram to Etsy Print Shop](./Instagram-to-Etsy-Print-Shop%20.md).
+#### 1.2 Technology Stack Integration
+```
+Existing Components (Keep):
+├── src/phase1_acquisition/ (Instagram scraping & enhanced filtering)
+├── src/phase2_processing/ (Image optimization for print)
+└── Enhanced content filtering with Google Vision
 
-## Repository Structure
-
-The organization of this repository is detailed in [repo-structure.md](./repo-structure.md).
-
-## High-Level Project Phases
-
-The project will be implemented in the following key phases:
-
-1. **Phase 1: Instagram Image Acquisition & Content Analysis**
-    * Authentication & Access (Instagram API/Scraping)
-    * Image Discovery & Filtering (Criteria: aspect ratio, hashtags, quality, engagement, date)
-    * Computer Vision Content Analysis (Object/scene detection, color analysis, composition, etc.)
-2. **Phase 2: Image Processing & Print Optimization**
-    * Image enhancement, resizing, color correction for print
-    * Print quality assessment
-3. **Phase 3: Print-on-Demand (PoD) Integration**
-    * API integration with selected PoD services
-    * Product creation and variant mapping
-4. **Phase 4: Etsy Shop Management & Listing Automation**
-    * Automated creation of Etsy listings
-    * Dynamic population of metadata (titles, descriptions, tags) based on CV analysis
-    * Management of pricing and shipping profiles
-5. **Phase 5: Search & Discovery System**
-    * Building a search index with CV-extracted features
-    * Developing a user interface for content-based image search within the print shop
-6. **Phase 6: Technical Architecture & Stack Implementation**
-    * Setup of cloud storage (e.g., AWS S3, Google Cloud Storage)
-    * Development of the Computer Vision processing pipeline
-    * Configuration of monitoring (e.g., Prometheus, Grafana) and logging (e.g., ELK Stack)
-    * Implementation of CI/CD pipelines (e.g., GitHub Actions)
-7. **Phase 7: Success Metrics & KPIs**
-    * Defining and tracking operational metrics (e.g., processing speed, CV accuracy)
-    * Defining and tracking business metrics (e.g., conversion rates, revenue)
-8. **Phase 8: Deployment**
-    * Execution of the deployment checklist
-    * Initial launch with a limited product set for validation and iteration
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.8 or higher
-- Instagram account (for image acquisition)
-- Printify account with API key
-- Etsy shop connected to your Printify account
-- (Optional) Google Cloud Storage account for image storage
-
-### Installation
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/auto_etsy.git
-   cd auto_etsy
-   ```
-
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv myenv
-   # On Windows
-   myenv\Scripts\activate
-   # On macOS/Linux
-   source myenv/bin/activate
-   ```
-
-3. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Create a `.env` file in the project root with your credentials:
-   ```
-   # Instagram credentials
-   INSTAGRAM_USERNAME=your_instagram_username
-   INSTAGRAM_PASSWORD=your_instagram_password
-   
-   # Printify API credentials
-   PRINTIFY_API_TOKEN=your_printify_api_token
-   PRINTIFY_SHOP_ID=your_printify_shop_id
-   
-   # Google Cloud Storage (optional)
-   USE_GCS=False
-   GCS_BUCKET_NAME=your_gcs_bucket_name
-   GOOGLE_APPLICATION_CREDENTIALS=path/to/your/credentials.json
-   ```
-
-### Usage
-
-The application can be run using the `run.py` script at the project root:
-
-```bash
-# Run the full workflow (all phases)
-python run.py --workflow full --instagram-user yourusername --limit 10
-
-# Run only the image acquisition phase
-python run.py --workflow acquisition --instagram-user yourusername --limit 5
-
-# Run only the image processing phase (using existing images)
-python run.py --workflow processing --input-dir data/raw --output-dir data/processed
-
-# Run only the Print-on-Demand integration phase
-python run.py --workflow pod
-
-# Run with debug logging enabled
-python run.py --workflow full --debug
-
-# Get help on available options
-python run.py --help
+New Shopify Integration:
+├── src/phase3_shopify_integration/
+│   ├── admin_api.py (Product creation & management)
+│   ├── storefront_api.py (Customer-facing operations)
+│   └── print_fulfillment.py (POD integration)
+├── frontend/ (Custom storefront)
+└── admin_dashboard/ (Internal management interface)
 ```
 
-### Workflow Phases
+#### 1.3 Premium POD Integration
+- **Recommended Partner**: WhiteWall
+  - Gallery-quality printing
+  - Automated Shopify integration
+  - Global shipping capabilities
+  - Custom pricing control
+  - White-label fulfillment
 
-1. **Acquisition**: Scrapes images from Instagram and filters them based on criteria
-2. **Processing**: Optimizes images for printing (resizing, enhancing, etc.)
-3. **POD Integration**: Uploads processed images to Printify and creates products
-4. **Etsy Management**: Manages Etsy listings via Printify integration
-5. **Discovery**: (Future) Implements search capabilities for finding optimal images
+### Phase 2: Core Shopify Integration (Week 3-4)
 
-### Directory Structure
+#### 2.1 Admin API Implementation
+- Create `src/phase3_shopify_integration/admin_api.py`
+- Implement product creation with variants (sizes, materials)
+- Add inventory management functions
+- Build collection management for categorization
+- Include metadata optimization for SEO
 
-- `data/`: Stores images and metadata
-  - `raw/`: Raw images downloaded from Instagram
-  - `processed/`: Processed and optimized images
-  - `metadata/`: Metadata about images and workflow runs
-- `src/`: Source code
-  - `phase1_acquisition/`: Instagram scraping and image filtering
-  - `phase2_processing/`: Image processing and optimization
-  - `phase3_pod_integration/`: Printify API integration
-  - `phase4_etsy_management/`: Etsy shop management
-  - `phase5_search_discovery/`: Search and discovery features
-  - `utils/`: Utility functions and helpers
-- `tests/`: Unit and integration tests
-- `notebooks/`: Jupyter notebooks for exploration and analysis
+#### 2.2 Print Fulfillment Pipeline
+- Create `src/phase3_shopify_integration/print_fulfillment.py`
+- Integrate with WhiteWall API for automated order processing
+- Implement quality-based pricing tiers
+- Add shipping profile management
+- Include order tracking and customer notifications
 
-## Contributing
+#### 2.3 Enhanced Image Processing
+- Extend `src/phase2_processing/` for print optimization
+- Add DPI validation and enhancement
+- Implement color profile management
+- Create size variant generation for different print options
+- Add print quality assessment scoring
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Phase 3: Custom Storefront Development (Week 5-6)
 
-## License
+#### 3.1 Frontend Architecture
+- Set up Next.js project with Shopify Storefront API
+- Implement responsive design optimized for photography
+- Create advanced filtering and search capabilities
+- Add visual browsing with image galleries
+- Include customer account management
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+#### 3.2 SEO & Content Automation
+- Implement automated meta description generation
+- Create dynamic product titles based on CV analysis
+- Add schema markup for photography products
+- Build automated blog content creation
+- Include social media integration
+
+#### 3.3 User Experience Features
+- Advanced image viewer with zoom and quality preview
+- Smart product recommendations based on visual similarity
+- Custom framing and sizing calculators
+- Real-time print preview with room visualizations
+- Customer gallery and review system
+
+#### 3.4 Dual-Tier Product Presentation
+- **Tier Comparison Interface**:
+  - Side-by-side quality comparisons
+  - Interactive material and framing selection
+  - Price point visualization with value proposition
+  - Customer testimonials by tier
+  - Quality guarantee badges
+
+- **Smart Tier Recommendations**:
+  - AI-driven customer preference detection
+  - Budget-based tier suggestions
+  - Use case recommendations (gift vs. personal)
+  - Cross-tier bundling opportunities
+  - Seasonal promotion integration
+
+- **Premium Tier Features**:
+  - Virtual gallery preview with room visualization
+  - Certificate of authenticity generation
+  - Premium packaging and presentation options
+  - White-glove delivery tracking
+  - Professional installation guidance
+
+- **Affordable Tier Features**:
+  - Quick ordering with minimal friction
+  - Bulk discount opportunities
+  - Fast shipping options
+  - DIY framing recommendations
+  - Student and volume discounts
+
+### Phase 4: Analytics & Optimization (Week 7-8)
+
+#### 4.1 Performance Tracking
+- Create `src/analytics/` directory
+- Implement conversion tracking by image quality score
+- Add customer behavior analysis
+- Build A/B testing framework for product pages
+- Include revenue attribution by image source
+
+#### 4.2 Admin Dashboard
+- Build internal management interface
+- Add real-time performance metrics
+- Implement inventory intelligence and auto-reordering
+- Create quality feedback loop from customer ratings
+- Include automated report generation
+
+#### 4.3 Continuous Optimization
+- Implement machine learning for image selection
+- Add dynamic pricing based on demand
+- Create automated content optimization
+- Build customer lifetime value prediction
+- Include competitive analysis tools
+
+### Phase 5: Main Orchestration & Launch Preparation
+
+#### 5.1 Workflow Integration
+- Create `src/main.py` as unified entry point
+- Implement end-to-end automation pipeline
+- Add comprehensive error handling and logging
+- Include scheduling for automated processing
+- Build monitoring and alerting system
+
+#### 5.2 Quality Assurance & Testing
+- Implement automated testing for all components
+- Add performance benchmarking
+- Create disaster recovery procedures
+- Include security audit and compliance checks
+- Build customer support automation
+
+## Success Metrics & KPIs
+
+### Revenue Metrics
+- **Conversion Rate**: Target 3-5% (vs typical 1-2% for marketplaces)
+- **Average Order Value**: Target $150+ for premium prints
+- **Customer Lifetime Value**: Track repeat purchase patterns
+- **Profit Margins**: Achieve 60-80% vs Etsy's 40-50%
+
+### Operational Metrics
+- **Image Processing Speed**: < 30 seconds per image
+- **Quality Score Accuracy**: 90%+ correlation with sales performance
+- **SEO Performance**: Organic traffic growth month-over-month
+- **Customer Satisfaction**: Net Promoter Score tracking
+
+### Automation Metrics
+- **Time Savings**: 90% reduction in manual product creation
+- **Processing Success Rate**: 99%+ uptime
+- **Inventory Turnover**: Automated reordering efficiency
+- **Content Generation**: Automated SEO content quality scores
+
+## Implementation 
+
+### Foundation
+- [ ] Set up Shopify store and API credentials
+- [ ] Integrate WhiteWall POD service
+- [ ] Create basic product creation pipeline
+- [ ] Implement enhanced image processing
+
+### Core Integration
+- [ ] Connect existing Instagram pipeline to Shopify
+- [ ] Build automated product creation workflow
+- [ ] Implement inventory management system
+- [ ] Create admin dashboard basic features
+
+### Customer Experience
+- [ ] Develop custom storefront with Storefront API
+- [ ] Implement advanced search and filtering
+- [ ] Add visual browsing capabilities
+- [ ] Build SEO automation features
+
+### Optimization & Launch
+- [ ] Implement analytics and tracking
+- [ ] Complete A/B testing framework
+- [ ] Perform comprehensive testing
+- [ ] Launch with limited product set
+- [ ] Monitor performance and optimize
+
+## Expected Outcomes
+
+**Revenue Advantages with Dual-Tier Strategy**:
+- **Market Segmentation**: Capture both premium ($250-$400 AOV) and budget-conscious ($75-$125 AOV) customers
+- **Higher Overall Margins**: Blended margin of 60-75% across both tiers
+- **Volume + Premium Balance**: High-volume affordable tier subsidizes premium tier customer acquisition
+- **Customer Journey Optimization**: Natural upselling path from affordable to premium
+- **Brand Positioning**: Establish premium credentials while maintaining accessibility
+- **Revenue Diversification**: Reduced risk through multiple price points and customer segments
+
+**Competitive Advantages Over Single-Tier Approach**:
+- **Broader Market Appeal**: Address 5x larger addressable market
+- **Customer Retention**: Multiple touch points and purchase opportunities
+- **Seasonal Flexibility**: Premium for gifts, affordable for personal use
+- **Quality Differentiation**: Clear value proposition at each tier
+- **Inventory Optimization**: Balance fast-moving and high-margin products
+
+**Automation Benefits**:
+- **Intelligent Tier Assignment**: AI determines optimal tier placement for each image
+- **Dynamic Pricing**: Market-responsive pricing across both tiers
+- **Cross-Tier Marketing**: Automated customer journey optimization
+- **Quality Consistency**: Tier-appropriate processing and presentation
+- **Fulfillment Efficiency**: Optimized routing to appropriate POD partner
+
+This dual-tier strategy positions the project to capture significantly larger market share while maintaining premium positioning and maximizing revenue across multiple customer segments.

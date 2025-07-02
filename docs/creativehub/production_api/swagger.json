@@ -1,0 +1,1574 @@
+{
+  "x-generator": "NSwag v13.11.1.0 (NJsonSchema v10.4.3.0 (Newtonsoft.Json v13.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "api.creativehub.io",
+    "version": "1.0.0"
+  },
+  "host": "api.creativehub.io",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/orders/query": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Queries all your orders",
+        "operationId": "Orders_Query_v1",
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CollectionRequest"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CollectionResultOfOrderConfirmedResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/{id}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Get an order given an id",
+        "operationId": "Orders_Get_v1",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/OrderConfirmedResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Cancel an embryonic order",
+        "operationId": "Orders_Delete_v1",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/v1/orders/embryonic": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Create an embryonic order",
+        "operationId": "Orders_Embryonic_v1",
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/OrderEmbryonicRequest"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/OrderEmbryonicResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/confirmed": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Create a confirmed order",
+        "operationId": "Orders_Confirm_v1",
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/OrderConfirmedRequest"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/OrderConfirmedResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/state": {
+      "put": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Only for test deployments, not for production use - update an order's state",
+        "operationId": "Orders_UpdateState_v1",
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/OrderStateRequest"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/v1/skus/{sku}": {
+      "get": {
+        "tags": [
+          "Skus"
+        ],
+        "summary": "Get an Order Item given a SKU",
+        "operationId": "Skus_Get_v1",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "sku",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/OrderItemRequest"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/countries/query": {
+      "post": {
+        "tags": [
+          "Countries"
+        ],
+        "summary": "Queries all the countries we deliver to",
+        "operationId": "Countries_Query_v1",
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CollectionRequest"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CollectionResultOfCountry"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/countries/{id}": {
+      "get": {
+        "tags": [
+          "Countries"
+        ],
+        "summary": "Get a country given an id",
+        "operationId": "Countries_Get_v1",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Country"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/deliveryoptions/query": {
+      "post": {
+        "tags": [
+          "DeliveryOptions"
+        ],
+        "summary": "Queries all delivery options for all countries",
+        "operationId": "DeliveryOptions_Query_v1",
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CollectionRequest"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CollectionResultOfDeliveryOption"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/deliveryoptions/{id}": {
+      "get": {
+        "tags": [
+          "DeliveryOptions"
+        ],
+        "summary": "Get a delivery option given an id",
+        "operationId": "DeliveryOptions_Get_v1",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DeliveryOption"
+            }
+          }
+        }
+      }
+    },
+    "/client/v1/webhook": {
+      "post": {
+        "tags": [
+          "WebhookClient"
+        ],
+        "summary": "example of webhook reciever endpoint",
+        "operationId": "WebhookClient_Webhook_v1",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/WebhookBase"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/products/query": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Queries all your products",
+        "operationId": "Products_Query_v1",
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CollectionRequest"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CollectionResultOfProduct"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/products/{id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get a product given an id",
+        "operationId": "Products_Get_v1",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CollectionResultOfOrderConfirmedResponse": {
+      "type": "object",
+      "required": [
+        "Total"
+      ],
+      "properties": {
+        "Data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderConfirmedResponse"
+          }
+        },
+        "Total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "OrderConfirmedResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/OrderResponse"
+        },
+        {
+          "type": "object",
+          "required": [
+            "DeliveryOption",
+            "DeliveryChargeExcludingSalesTax",
+            "DeliveryChargeSalesTax"
+          ],
+          "properties": {
+            "DeliveryOption": {
+              "$ref": "#/definitions/DeliveryOption"
+            },
+            "DeliveryChargeExcludingSalesTax": {
+              "type": "number",
+              "format": "decimal"
+            },
+            "DeliveryChargeSalesTax": {
+              "type": "number",
+              "format": "decimal"
+            },
+            "DateDispatched": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "TrackingNumber": {
+              "type": "string"
+            },
+            "DateDispatchedString": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "DeliveryOption": {
+      "type": "object",
+      "required": [
+        "Id",
+        "BranchId",
+        "DeliveryChargeExcludingSalesTax",
+        "DeliveryChargeSalesTax"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "BranchId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "BranchName": {
+          "type": "string"
+        },
+        "Method": {
+          "type": "string"
+        },
+        "DeliveryTime": {
+          "type": "string"
+        },
+        "DeliveryChargeExcludingSalesTax": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "DeliveryChargeSalesTax": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "EstimatedDeliveryDateFrom": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "EstimatedDeliveryDateTo": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "OrderResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/OrderBase"
+        },
+        {
+          "type": "object",
+          "required": [
+            "OrderItems",
+            "OrderState",
+            "DateCreated",
+            "PrintCostExcludingSalesTax",
+            "PrintCostSalesTax",
+            "TotalExcludingSalesTax",
+            "TotalSalesTax",
+            "IsPaid"
+          ],
+          "properties": {
+            "OrderItems": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OrderItemResponse"
+              }
+            },
+            "OrderState": {
+              "$ref": "#/definitions/OrderState"
+            },
+            "DateCreated": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "DateLastEdited": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "PrintCostExcludingSalesTax": {
+              "type": "number",
+              "format": "decimal"
+            },
+            "PrintCostSalesTax": {
+              "type": "number",
+              "format": "decimal"
+            },
+            "TotalExcludingSalesTax": {
+              "type": "number",
+              "format": "decimal"
+            },
+            "TotalSalesTax": {
+              "type": "number",
+              "format": "decimal"
+            },
+            "IsPaid": {
+              "type": "boolean"
+            },
+            "DateCreatedString": {
+              "type": "string"
+            },
+            "DateLastEditedString": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "OrderItemResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/OrderItemBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "Product": {
+              "$ref": "#/definitions/Product"
+            },
+            "PrintOption": {
+              "$ref": "#/definitions/PrintOption"
+            }
+          }
+        }
+      ]
+    },
+    "Product": {
+      "type": "object",
+      "required": [
+        "Id",
+        "HDPI",
+        "VDPI",
+        "Width",
+        "Height",
+        "DateTaken",
+        "HasFramedOptions"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "FileName": {
+          "type": "string"
+        },
+        "DisplayName": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "StoragePrefix": {
+          "type": "string"
+        },
+        "GUID": {
+          "type": "string"
+        },
+        "HDPI": {
+          "type": "number",
+          "format": "double"
+        },
+        "VDPI": {
+          "type": "number",
+          "format": "double"
+        },
+        "Width": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "DateTaken": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UserFirstName": {
+          "type": "string"
+        },
+        "UserLastName": {
+          "type": "string"
+        },
+        "UserDefaultArtistName": {
+          "type": "string"
+        },
+        "ArtistName": {
+          "type": "string"
+        },
+        "Paper": {
+          "type": "string"
+        },
+        "PrintType": {
+          "type": "string"
+        },
+        "HasFramedOptions": {
+          "type": "boolean"
+        },
+        "PrintOptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PrintOption"
+          }
+        },
+        "DescriptionHTML": {
+          "type": "string"
+        },
+        "DateTakenString": {
+          "type": "string"
+        },
+        "ThumbnailUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "PrintOption": {
+      "type": "object",
+      "required": [
+        "Id",
+        "Price",
+        "CostPerItem",
+        "ShortSideInches",
+        "LongSideInches",
+        "ShortSideMM",
+        "LongSideMM",
+        "BorderTopMM",
+        "BorderLeftMM",
+        "BorderRightMM",
+        "BorderBottomMM",
+        "WMBorderTopMM",
+        "WMBorderLeftMM",
+        "WMBorderRightMM",
+        "WMBorderBottomMM",
+        "IsAvailable",
+        "SellAsEdition",
+        "HasFrame",
+        "HasMounting",
+        "HasCanvas",
+        "FrameWidthMM",
+        "WidthMM",
+        "HeightMM",
+        "VerticalBorderMM",
+        "HorizontalBorderMM",
+        "LongBorderMM",
+        "ShortBorderMM",
+        "VerticalWMBorderMM",
+        "HorizontalWMBorderMM",
+        "LongMountMM",
+        "ShortMountMM",
+        "TotalWidthMM",
+        "TotalHeightMM",
+        "TotalLongSideMM",
+        "TotalShortSideMM",
+        "TotalLongSideInches",
+        "TotalShortSideInches",
+        "DoNotPrint",
+        "Dimensions"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Price": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "CostPerItem": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "ShortSideInches": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "LongSideInches": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "ShortSideMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "LongSideMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "BorderTopMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "BorderLeftMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "BorderRightMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "BorderBottomMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "WMBorderTopMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "WMBorderLeftMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "WMBorderRightMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "WMBorderBottomMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "WMColour": {
+          "type": "string"
+        },
+        "IsAvailable": {
+          "type": "boolean"
+        },
+        "SellAsEdition": {
+          "type": "boolean"
+        },
+        "EditionsLimit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "LastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "HasFrame": {
+          "type": "boolean"
+        },
+        "HasMounting": {
+          "type": "boolean"
+        },
+        "HasCanvas": {
+          "type": "boolean"
+        },
+        "FrameTypeDescription": {
+          "type": "string"
+        },
+        "SubstrateDescription": {
+          "type": "string"
+        },
+        "FrameDescription": {
+          "type": "string"
+        },
+        "FrameWidthMM": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "WidthMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "HeightMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "EditionsSold": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CurrencyCode": {
+          "type": "string"
+        },
+        "PreviewFileNameStandard": {
+          "type": "string"
+        },
+        "PreviewFileNameCloseUp": {
+          "type": "string"
+        },
+        "VerticalBorderMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "HorizontalBorderMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "LongBorderMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "ShortBorderMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "VerticalWMBorderMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "HorizontalWMBorderMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "LongMountMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "ShortMountMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "TotalWidthMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "TotalHeightMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "TotalLongSideMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "TotalShortSideMM": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "TotalLongSideInches": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "TotalShortSideInches": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "AdditionalPricing": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "CustomFinishingDetails": {
+          "type": "string"
+        },
+        "ExternalSku": {
+          "type": "string"
+        },
+        "DoNotPrint": {
+          "type": "boolean"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "ShortDescription": {
+          "type": "string"
+        },
+        "FullDescription": {
+          "type": "string"
+        },
+        "VariantDescription": {
+          "type": "string"
+        },
+        "Dimensions": {
+          "$ref": "#/definitions/ValueTupleOfDecimalAndDecimalAndDecimalAndDecimal"
+        }
+      }
+    },
+    "ValueTupleOfDecimalAndDecimalAndDecimalAndDecimal": {
+      "type": "object",
+      "required": [
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4"
+      ],
+      "properties": {
+        "Item1": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "Item2": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "Item3": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "Item4": {
+          "type": "number",
+          "format": "decimal"
+        }
+      }
+    },
+    "OrderItemBase": {
+      "type": "object",
+      "required": [
+        "Id",
+        "ProductId",
+        "PrintOptionId",
+        "Quantity"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ProductId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "PrintOptionId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ExternalReference": {
+          "type": "string"
+        },
+        "ExternalSku": {
+          "type": "string"
+        }
+      }
+    },
+    "OrderState": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "ProcessingPayment",
+        "NewOrder",
+        "ImageFileReceived",
+        "Printed",
+        "InFraming",
+        "InMounting",
+        "ToBeRedone",
+        "MountingStarted",
+        "FramingComplete",
+        "FramingStarted",
+        "MountingComplete",
+        "Dispatched",
+        "ReadyForCollection",
+        "Collected",
+        "Cancelled",
+        "ForReturn",
+        "ReturnReceived",
+        "RefundInitiated",
+        "PaymentFailed",
+        "Packed",
+        "Delivered",
+        "ShippingFailed",
+        "OnHold",
+        "Dispatch",
+        "ASFFraming",
+        "DispatchQC",
+        "ProductShotsPending",
+        "MountingFramingQC",
+        "ProductShotsComplete",
+        "BulkDispatch",
+        "CardRequired",
+        "OrderFailed",
+        "DuplicateOrder",
+        "EmbryonicOrder",
+        "SuspendedOrder",
+        "NotSet"
+      ],
+      "enum": [
+        "ProcessingPayment",
+        "NewOrder",
+        "ImageFileReceived",
+        "Printed",
+        "InFraming",
+        "InMounting",
+        "ToBeRedone",
+        "MountingStarted",
+        "FramingComplete",
+        "FramingStarted",
+        "MountingComplete",
+        "Dispatched",
+        "ReadyForCollection",
+        "Collected",
+        "Cancelled",
+        "ForReturn",
+        "ReturnReceived",
+        "RefundInitiated",
+        "PaymentFailed",
+        "Packed",
+        "Delivered",
+        "ShippingFailed",
+        "OnHold",
+        "Dispatch",
+        "ASFFraming",
+        "DispatchQC",
+        "ProductShotsPending",
+        "MountingFramingQC",
+        "ProductShotsComplete",
+        "BulkDispatch",
+        "CardRequired",
+        "OrderFailed",
+        "DuplicateOrder",
+        "EmbryonicOrder",
+        "SuspendedOrder",
+        "NotSet"
+      ]
+    },
+    "OrderBase": {
+      "type": "object",
+      "required": [
+        "Id",
+        "FirstName",
+        "LastName",
+        "Email",
+        "ShippingAddress"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ExternalReference": {
+          "type": "string"
+        },
+        "FirstName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "LastName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Email": {
+          "type": "string",
+          "minLength": 1
+        },
+        "MessageToLab": {
+          "type": "string"
+        },
+        "ShippingAddress": {
+          "$ref": "#/definitions/Address"
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "required": [
+        "FirstName",
+        "LastName",
+        "Line1",
+        "PostCode",
+        "PhoneNumber"
+      ],
+      "properties": {
+        "FirstName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "LastName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Line1": {
+          "type": "string",
+          "minLength": 1
+        },
+        "Line2": {
+          "type": "string"
+        },
+        "Town": {
+          "type": "string"
+        },
+        "County": {
+          "type": "string"
+        },
+        "PostCode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "CountryId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CountryCode": {
+          "type": "string"
+        },
+        "CountryName": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "CollectionRequest": {
+      "type": "object",
+      "required": [
+        "Page",
+        "PageSize"
+      ],
+      "properties": {
+        "Page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "PageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Filter": {
+          "$ref": "#/definitions/IFilterDescriptor"
+        },
+        "Sorts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SortDescriptor"
+          }
+        }
+      }
+    },
+    "IFilterDescriptor": {
+      "type": "object",
+      "x-abstract": true
+    },
+    "CompositeFilterDescriptor": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/IFilterDescriptor"
+        },
+        {
+          "type": "object",
+          "required": [
+            "LogicalOperator"
+          ],
+          "properties": {
+            "LogicalOperator": {
+              "$ref": "#/definitions/FilterLogicalOperator"
+            },
+            "FilterDescriptors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IFilterDescriptor"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FilterLogicalOperator": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "And",
+        "Or"
+      ],
+      "enum": [
+        "And",
+        "Or"
+      ]
+    },
+    "PredicateFilterDescriptor": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/IFilterDescriptor"
+        },
+        {
+          "type": "object",
+          "required": [
+            "PredicateOperator"
+          ],
+          "properties": {
+            "Member": {
+              "type": "string"
+            },
+            "PredicateOperator": {
+              "$ref": "#/definitions/FilterPredicateOperator"
+            },
+            "Value": {},
+            "ValueKendo": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "FilterPredicateOperator": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Contains",
+        "DoesNotContain",
+        "EndsWith",
+        "IsEmpty",
+        "IsEqualTo",
+        "IsGreaterThan",
+        "IsGreaterThanOrEqualTo",
+        "IsLessThan",
+        "IsLessThanOrEqualTo",
+        "IsNotEmpty",
+        "IsNotEqualTo",
+        "IsNotNull",
+        "IsNotNullOrEmpty",
+        "IsNull",
+        "IsNullOrEmpty",
+        "StartsWith"
+      ],
+      "enum": [
+        "Contains",
+        "DoesNotContain",
+        "EndsWith",
+        "IsEmpty",
+        "IsEqualTo",
+        "IsGreaterThan",
+        "IsGreaterThanOrEqualTo",
+        "IsLessThan",
+        "IsLessThanOrEqualTo",
+        "IsNotEmpty",
+        "IsNotEqualTo",
+        "IsNotNull",
+        "IsNotNullOrEmpty",
+        "IsNull",
+        "IsNullOrEmpty",
+        "StartsWith"
+      ]
+    },
+    "SortDescriptor": {
+      "type": "object",
+      "required": [
+        "SortDirection"
+      ],
+      "properties": {
+        "Member": {
+          "type": "string"
+        },
+        "SortDirection": {
+          "$ref": "#/definitions/SortDirection"
+        }
+      }
+    },
+    "SortDirection": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Ascending",
+        "Descending"
+      ],
+      "enum": [
+        "Ascending",
+        "Descending"
+      ]
+    },
+    "OrderEmbryonicResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/OrderResponse"
+        },
+        {
+          "type": "object",
+          "required": [
+            "DeliveryOptions"
+          ],
+          "properties": {
+            "DeliveryOptions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DeliveryOption"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "OrderEmbryonicRequest": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/OrderRequest"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "OrderRequest": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/OrderBase"
+        },
+        {
+          "type": "object",
+          "required": [
+            "OrderItems"
+          ],
+          "properties": {
+            "OrderItems": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OrderItemRequest"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "OrderItemRequest": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/OrderItemBase"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "OrderConfirmedRequest": {
+      "type": "object",
+      "required": [
+        "OrderId",
+        "DeliveryOptionId",
+        "DeliveryChargeExcludingSalesTax",
+        "DeliveryChargeSalesTax"
+      ],
+      "properties": {
+        "OrderId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "DeliveryOptionId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "DeliveryChargeExcludingSalesTax": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "DeliveryChargeSalesTax": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "ExternalReference": {
+          "type": "string"
+        }
+      }
+    },
+    "OrderStateRequest": {
+      "type": "object",
+      "required": [
+        "OrderId",
+        "OrderState"
+      ],
+      "properties": {
+        "OrderId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "OrderState": {
+          "$ref": "#/definitions/OrderState"
+        }
+      }
+    },
+    "CollectionResultOfCountry": {
+      "type": "object",
+      "required": [
+        "Total"
+      ],
+      "properties": {
+        "Data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Country"
+          }
+        },
+        "Total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Country": {
+      "type": "object",
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        }
+      }
+    },
+    "CollectionResultOfDeliveryOption": {
+      "type": "object",
+      "required": [
+        "Total"
+      ],
+      "properties": {
+        "Data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeliveryOption"
+          }
+        },
+        "Total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "WebhookBase": {
+      "type": "object",
+      "required": [
+        "Version",
+        "ApiWebhookKind",
+        "EventUtc"
+      ],
+      "properties": {
+        "Version": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ApiWebhookKind": {
+          "$ref": "#/definitions/ApiWebhookKind"
+        },
+        "EventUtc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Salt": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiWebhookKind": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Test",
+        "OrderStateChanged"
+      ],
+      "enum": [
+        "Test",
+        "OrderStateChanged"
+      ]
+    },
+    "WebhookTest": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/WebhookBase"
+        },
+        {
+          "type": "object",
+          "required": [
+            "Version",
+            "ApiWebhookKind"
+          ],
+          "properties": {
+            "Version": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "ApiWebhookKind": {
+              "$ref": "#/definitions/ApiWebhookKind"
+            }
+          }
+        }
+      ]
+    },
+    "WebhookOrderStateChanged": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/WebhookBase"
+        },
+        {
+          "type": "object",
+          "required": [
+            "Version",
+            "ApiWebhookKind"
+          ],
+          "properties": {
+            "Version": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "ApiWebhookKind": {
+              "$ref": "#/definitions/ApiWebhookKind"
+            },
+            "Order": {
+              "$ref": "#/definitions/OrderConfirmedResponse"
+            }
+          }
+        }
+      ]
+    },
+    "CollectionResultOfProduct": {
+      "type": "object",
+      "required": [
+        "Total"
+      ],
+      "properties": {
+        "Data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          }
+        },
+        "Total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}
